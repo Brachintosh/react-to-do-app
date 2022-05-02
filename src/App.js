@@ -1,6 +1,8 @@
 import './App.css';
 // import checkMark from './assets/logo-check.png'
 import Swal from 'sweetalert2'
+import Form from './components/Form';
+import ToDoList from './components/ToDoList';
 
 function App() {
   //  Pop up after loading the page:
@@ -13,11 +15,12 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        Hello react!
-      </div>
-      <h3>Hola ?</h3>
-
+      
+      <header>
+        To Do App
+      </header>
+      <Form />
+      <ToDoList />
 
     </div>
   );
