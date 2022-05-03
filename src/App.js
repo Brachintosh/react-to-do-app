@@ -9,6 +9,9 @@ function App() {
   const [inputText, setInputText] = useState('');
   const [todos, setTodos] = useState([]);
 
+  const [status, setStatus] = useState('all');
+  const [ filteredTodos, setFilteredTodos] = useState([]);
+
   //  Pop up after loading the page:
   // Swal.fire({
   //   title: 'Wellcome!',
@@ -27,7 +30,9 @@ function App() {
         inputText={inputText}
         setInputText={setInputText}
         todos={todos}
-        setTodos={setTodos} />
+        setTodos={setTodos}
+        setStatus={setStatus}
+      />
       <ToDoList todos={todos} setTodos={setTodos} />
 
     </div>
