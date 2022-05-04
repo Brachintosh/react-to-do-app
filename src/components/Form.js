@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Swal from 'sweetalert2';
 
 const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
   
@@ -19,12 +20,32 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
     ]);
     //  Reset the input form:
     setInputText('');
+
+    popUpToast.fire({
+      icon: 'success',
+      title: 'To Do item was added successfully!',
+      footer: 'Nice job! 😎 ',
+    });
   };
 
   const statusHandler = (e) => {
     setStatus(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
+
+  const popUpToast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1750,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+  });
+  
+  
 
   return (
     <form>

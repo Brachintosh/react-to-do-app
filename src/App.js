@@ -1,31 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 // import checkMark from './assets/logo-check.png'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 import Form from './components/Form';
 import ToDoList from './components/ToDoList';
 
 function App() {
+  //  Intial states:
   const [inputText, setInputText] = useState('');
   const [todos, setTodos] = useState([]);
 
   const [status, setStatus] = useState('all');
-  const [ filteredTodos, setFilteredTodos] = useState([]);
+  const [filteredTodos, setFilteredTodos] = useState([]);
+
+  //  Functions on events:
+  const filterHandler = () => {
+    switch(status) {
+      case 'completed':
+        setFilteredTodos(todos.filter((todo) => todo.completed === true));
+        break;
+      
+      case 'uncompleted':
+        setFilteredTodos(todos.filter((todo) => todo.completed === false));
+        break;
+      
+      default:
+        setFilteredTodos(todos);
+        break;
+    }
+  };
+
+  //  useEffect:
+  useEffect(() => {
+    // console.log('hey ! c.log >> ' );
+    filterHandler();
+    // popUp();
+  }, [todos, status]);
+  
 
   //  Pop up after loading the page:
-  // Swal.fire({
-  //   title: 'Wellcome!',
-  //   text: 'Do you want to enter?',
-  //   icon: 'success',
-  //   confirmButtonText: 'Check it!'
-  // });
+  // const popUp = () => { 
+    
+  //   Swal.fire({
+  //     title: 'Wellcome!',
+  //     text: 'Do you want to enter?',
+  //     icon: 'success',
+  //     confirmButtonText: 'Check it!'
+  //   });
+  // }
 
   return (
     <div className="App">
-      
-      <header>
-        To Do App
-      </header>
+      <div>
+        <span> To Do List:</span>
+      </div>                                                                                                                                                                                                                                                                                   
       <Form 
         inputText={inputText}
         setInputText={setInputText}
