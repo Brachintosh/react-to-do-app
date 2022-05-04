@@ -4,8 +4,11 @@ import './App.css';
 // import Swal from 'sweetalert2'
 import Form from './components/Form';
 import ToDoList from './components/ToDoList';
+import Player from './components/Player';
 
 function App() {
+  const url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3';
+
   //  Intial states:
   const [inputText, setInputText] = useState('');
   const [todos, setTodos] = useState([]);
@@ -51,9 +54,11 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Player url={url} />   */}
+
       <div>
         <span> To Do List:</span>
-      </div>                                                                                                                                                                                                                                                                                   
+      </div>
       <Form 
         inputText={inputText}
         setInputText={setInputText}
@@ -62,6 +67,7 @@ function App() {
         setStatus={setStatus}
       />
       <ToDoList todos={todos} setTodos={setTodos} />
+                                                                                                                                                                                                                                                                         
 
     </div>
   );
