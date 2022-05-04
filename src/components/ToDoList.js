@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo.js';
 
-const ToDoList = ({ todos, setTodos }) => {
+const ToDoList = ({ todos, setTodos, filteredTodos }) => {
 // console.log('todos :>> ', todos);
 
   return (
@@ -9,7 +9,7 @@ const ToDoList = ({ todos, setTodos }) => {
       <ul className='todo-list' >
         {/* <Todo /> */}
         {
-          todos?.map((todo) => (
+          filteredTodos?.map((todo) => (
             <Todo 
               todo={todo}
               todos={todos}

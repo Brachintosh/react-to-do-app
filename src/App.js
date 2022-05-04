@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 // import checkMark from './assets/logo-check.png'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import Form from './components/Form';
 import ToDoList from './components/ToDoList';
 import Player from './components/Player';
 
 function App() {
-  const url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3';
+  // const url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3';
 
   //  Intial states:
   const [inputText, setInputText] = useState('');
@@ -33,24 +33,48 @@ function App() {
     }
   };
 
+  //  RUN ONLY ONCE when the app starts:
+  useEffect(() => {
+    popUp();
+    getLocalTodos()
+  }, []);
+
   //  useEffect:
   useEffect(() => {
     // console.log('hey ! c.log >> ' );
     filterHandler();
-    // popUp();
+    saveLocalTodos();
   }, [todos, status]);
+
+  //  SAVE TO LOCAL STORAGE:
+  const saveLocalTodos = () => {
+    // Adding to localStorage:
+    localStorage.setItem('todos', JSON.stringify(todos));
+  };
   
+  const getLocalTodos = () => {
+    // Cheking on localStorage:
+    if(localStorage.getItem('todos') === null) {
+      // localStorage.setItem('todos', JSON.stringify([]));
+      let todosLocal = JSON.parse(localStorage.getItem('todos'));
+      // console.log('Soy todosLocal :>> ', todosLocal);
+      setTodos(todosLocal);
+    } else {
+      let todosLocal = JSON.parse(localStorage.getItem('todos'));
+      // console.log('Soy todosLocal :>> ', todosLocal);
+      setTodos(todosLocal);
+    }
+  };
 
   //  Pop up after loading the page:
-  // const popUp = () => { 
-    
-  //   Swal.fire({
-  //     title: 'Wellcome!',
-  //     text: 'Do you want to enter?',
-  //     icon: 'success',
-  //     confirmButtonText: 'Check it!'
-  //   });
-  // }
+  const popUp = () => { 
+    Swal.fire({
+      title: 'Wellcome!',
+      text: 'Do you want to enter?',
+      icon: 'success',
+      confirmButtonText: 'Check it!'
+    });
+  }
 
   return (
     <div className="App">
@@ -66,7 +90,11 @@ function App() {
         setTodos={setTodos}
         setStatus={setStatus}
       />
-      <ToDoList todos={todos} setTodos={setTodos} />
+      <ToDoList
+        todos={todos}
+        setTodos={setTodos}
+        filteredTodos={filteredTodos}
+      />
                                                                                                                                                                                                                                                                          
 
     </div>
