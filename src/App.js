@@ -63,6 +63,7 @@ function App() {
       let todosLocal = JSON.parse(localStorage.getItem('todos'));
       // console.log('Soy todosLocal :>> ', todosLocal);
       setTodos(todosLocal);
+      
     }
   };
 
