@@ -40,7 +40,7 @@ function App() {
       setTodos(todosLocal);
     }
     // getLocalTodos()
-    // popUp();
+    popUp();
   }, []);
 
   //  useEffect:
@@ -71,9 +71,15 @@ function App() {
   const popUp = () => { 
     Swal.fire({
       title: 'Wellcome!',
-      text: 'Do you want to enter?',
+      text: 'Do you want to plan your day?',
       icon: 'success',
-      confirmButtonText: 'Check it!'
+      confirmButtonText: 'To do it!',
+      timer: 3750,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      },
     });
   };
 

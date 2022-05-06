@@ -5,7 +5,8 @@ const Todo = ({ text, todo, todos, setTodos }) => {
 // EVENTS:
     const deleteHandler = () => {
       deletePopUp();  
-      setTodos(todos.filter((el) => el.id !== todo.id ));
+      const newList = todos.filter((el) => el.id !== todo.id );
+      setTodos(newList);
         console.log('todo :>> ', todo);
         
     };
@@ -26,11 +27,11 @@ const Todo = ({ text, todo, todos, setTodos }) => {
 
     const deletePopUp = () => {
       Swal.fire({
-        title: "Are you sure!",
+        title: "Item deleted!",
         type: "danger",
         confirmButtonClass: "btn-danger",
-        confirmButtonText: "Yes!",
-        showCancelButton: true,
+        confirmButtonText: "OK",
+        // showCancelButton: true,
       }, 4500);
     };
 
