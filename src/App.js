@@ -35,8 +35,12 @@ function App() {
 
   //  RUN ONLY ONCE when the app starts:
   useEffect(() => {
-    popUp();
-    getLocalTodos()
+    const todosLocal = JSON.parse(localStorage.getItem("todos"));
+    if (todosLocal) {
+      setTodos(todosLocal);
+    }
+    // getLocalTodos()
+    // popUp();
   }, []);
 
   //  useEffect:
@@ -49,23 +53,19 @@ function App() {
   //  SAVE TO LOCAL STORAGE:
   const saveLocalTodos = () => {
     // Adding to localStorage:
-    localStorage.setItem('todos', JSON.stringify(todos));
+      localStorage.setItem("todos", JSON.stringify(todos));
   };
   
-  const getLocalTodos = () => {
-    // Cheking on localStorage:
-    if(localStorage.getItem('todos') === null) {
-      // localStorage.setItem('todos', JSON.stringify([]));
-      let todosLocal = JSON.parse(localStorage.getItem('todos'));
-      // console.log('Soy todosLocal :>> ', todosLocal);
-      setTodos(todosLocal);
-    } else {
-      let todosLocal = JSON.parse(localStorage.getItem('todos'));
-      // console.log('Soy todosLocal :>> ', todosLocal);
-      setTodos(todosLocal);
-      
-    }
-  };
+  // const getLocalTodos = () => {
+  //   // Checking on localStorage:
+  //   if(localStorage.getItem("todos") === null) {
+  //     localStorage.setItem("todos", JSON.stringify([]));
+  //   }else{
+  //     let todoLocal = JSON.parse(localStorage.getItem("todos"));
+  //     console.log('todoLocal :>> ', todoLocal);
+  //     setTodos(todoLocal);
+  //   };
+  // };
 
   //  Pop up after loading the page:
   const popUp = () => { 
@@ -75,15 +75,17 @@ function App() {
       icon: 'success',
       confirmButtonText: 'Check it!'
     });
-  }
+  };
 
   return (
     <div className="App">
+      <header>
+        <h4>
+          Brachintosh To Do List:
+        </h4>
       {/* <Player url={url} />   */}
+      </header>
 
-      <div>
-        <span> To Do List:</span>
-      </div>
       <Form 
         inputText={inputText}
         setInputText={setInputText}

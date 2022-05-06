@@ -2,7 +2,6 @@ import React from 'react';
 import Todo from './Todo.js';
 
 const ToDoList = ({ todos, setTodos, filteredTodos }) => {
-// console.log('todos :>> ', todos);
 
   return (
     <div className='todo-container' >
@@ -10,13 +9,12 @@ const ToDoList = ({ todos, setTodos, filteredTodos }) => {
         {/* <Todo /> */}
         {
           filteredTodos?.map((todo) => (
-            <Todo 
-              todo={todo}
-              todos={todos}
+            <Todo
               setTodos={setTodos}
-              text={todo.text}
+              todos={todos}
               key={todo.id}
-              completed={todo.completed}
+              todo={todo}
+              text={todo.text}
             />
           ))
         }
